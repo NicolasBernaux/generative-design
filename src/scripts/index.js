@@ -4,10 +4,11 @@ var settings = {
   interactive: false,
   headRadius: 60,
   thickness: 18,
-  tentacles: 40,
+  tentacles: 30,
   friction: 0.02,
   gravity: 1,
-  colour: { h:0, s:0, v:0.1 },
+  tentaclesFill: '#000000',
+  tentaclesStroke: '#121212',
   length: 70,
   pulse: true,
   wind: -0.5
@@ -52,7 +53,6 @@ var Tentacle = function( options ) {
   this.radius = options.radius || 10;
   this.spacing = options.spacing || 20;
   this.friction = options.friction || 0.8;
-  this.shade = random( 0.85, 1.1 );
 
   this.nodes = [];
   this.outer = [];
@@ -142,7 +142,7 @@ Tentacle.prototype = {
 
   draw: function( ctx ) {
 
-    var h, s, v, e;
+    var s, e;
 
     s = this.outer[0];
     e = this.inner[0];
@@ -154,18 +154,11 @@ Tentacle.prototype = {
     ctx.lineTo( e.x, e.y );
     ctx.closePath();
 
-    h = settings.colour.h * this.shade;
-    s = settings.colour.s * 100 * this.shade;
-    v = settings.colour.v * 100 * this.shade;
-
-    ctx.fillStyle = 'hsl(' + h + ',' + s + '%,' + v + '%)';
+    ctx.fillStyle = settings.tentaclesFill;
     ctx.fill();
 
     if ( settings.thickness > 2 ) {
-
-      v += settings.darkTheme ? -10 : 10;
-
-      ctx.strokeStyle = 'hsl(' + h + ',' + s + '%,' + v + '%)';
+      ctx.strokeStyle = settings.tentaclesStroke;
       ctx.lineWidth = 1;
       ctx.stroke();
     }
@@ -191,7 +184,7 @@ var sketch = Sketch.create({
 
     var tentacle;
 
-    for ( var i = 0; i < 100; i++ ) {
+    for ( var i = 0; i < settings.tentacles; i++ ) {
 
       tentacle = new Tentacle({
         length: random( 10, 20 ),
@@ -237,7 +230,7 @@ var sketch = Sketch.create({
     var px, py, theta, tentacle;
     var step = TWO_PI / settings.tentacles;
 
-    for ( var i = 0, n = settings.tentacles; i < n; i++ ) {
+    for ( var i = 0;  i < settings.tentacles; i++ ) {
 
       tentacle = tentacles[i];
 
@@ -252,28 +245,21 @@ var sketch = Sketch.create({
   },
 
   draw: function() {
+    this.fillStyle = '#222222';
+    this.fillRect(0, 0, this.width, this.height);
 
-    var h = settings.colour.h * 0.95;
-    var s = settings.colour.s * 100 * 0.95;
-    var v = settings.colour.v * 100 * 0.95;
-    var w = v + ( settings.darkTheme ? -10 : 10 );
-
-    this.beginPath();
-    this.arc( center.x, center.y, radius + settings.thickness, 0, TWO_PI );
-    this.lineWidth = settings.headRadius * 0.3;
-    this.globalAlpha = 0.2;
-    this.strokeStyle = 'hsl(' + h + ',' + s + '%,' + w + '%)';
-    this.stroke();
 
     this.globalAlpha = 1.0;
 
+    // draw tentacules
     for ( var i = 0, n = settings.tentacles; i < n; i++ ) {
       tentacles[i].draw( this );
     }
 
+    // draw circle opacity
     this.beginPath();
     this.arc( center.x, center.y, radius + settings.thickness, 0, TWO_PI );
-    this.fillStyle = 'hsl(' + h + ',' + s + '%,' + v + '%)';
+    this.fillStyle = settings.tentaclesFill;
     this.fill();
   },
 
@@ -287,8 +273,4 @@ var sketch = Sketch.create({
         settings.wind = 0.0;
       }
   },
-
-  export: function() {
-    window.open( this.canvas.toDataURL(), 'tentacles', "top=20,left=20,width=" + this.width + ",height=" + this.height );
-  }
 });
