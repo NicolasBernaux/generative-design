@@ -1,10 +1,7 @@
 import "./lib/sketch.min";
-import dat from "dat.gui";
-
 
 var settings = {
   interactive: false,
-  darkTheme: true,
   headRadius: 60,
   thickness: 18,
   tentacles: 40,
@@ -175,7 +172,6 @@ Tentacle.prototype = {
   }
 };
 
-var demo = true;
 var ease = 0.1;
 var modified = false;
 var radius = settings.headRadius;
@@ -283,56 +279,16 @@ var sketch = Sketch.create({
 
   mousedown: function() {
 
-    if ( demo ) {
-
-      demo = false;
       settings.interactive = true;
-      interactiveGUI.updateDisplay();
 
       if ( !modified ) {
         settings.length = 60;
         settings.gravity = 0.1;
         settings.wind = 0.0;
       }
-    }
   },
 
   export: function() {
     window.open( this.canvas.toDataURL(), 'tentacles', "top=20,left=20,width=" + this.width + ",height=" + this.height );
   }
 });
-
-function onSettingsChanged() {
-  modified = true;
-}
-
-function onThemeChanged( dark ) {
-
-  settings.colour.h = 0;
-  settings.colour.s = 0;
-  settings.colour.v = dark ? 0.8 : 0.1;
-
-  document.body.className = dark ? 'dark' : '';
-
-  colourGUI.updateDisplay();
-}
-
-var gui = new dat.GUI();
-gui.add( settings, 'headRadius' ).min( 0.0 ).max( 100.0 ).onChange( onSettingsChanged );
-gui.add( settings, 'tentacles' ).min( 1 ).max( 100 ).onChange( onSettingsChanged );
-gui.add( settings, 'thickness' ).min( 1.0 ).max( 40.0 ).onChange( onSettingsChanged );
-gui.add( settings, 'length' ).min( 10.0 ).max( 100.0 ).onChange( onSettingsChanged );
-gui.add( settings, 'gravity' ).min( -3.0 ).max( 3.0 ).onChange( onSettingsChanged );
-gui.add( settings, 'wind' ).min( -3.0 ).max( 3.0 ).onChange( onSettingsChanged );
-gui.add( settings, 'friction' ).min( 0.0 ).max( 1.0 ).onChange( onSettingsChanged );
-
-var colourGUI = gui.addColor( settings, 'colour' );
-gui.add( settings, 'darkTheme' ).onChange( onThemeChanged );
-gui.add( settings, 'pulse' );
-
-var interactiveGUI = gui.add( settings, 'interactive' );
-gui.add( sketch, 'autoclear' );
-gui.add( sketch, 'export' );
-gui.close();
-
-onThemeChanged( true );
