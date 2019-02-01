@@ -3,6 +3,7 @@ import CurveThroughPoints from "./CurveThroughPoints";
 
 export default function Tentacle( settings, options ) {
 
+  this.side = options.side || 'left';
   this.length = options.length || 10;
   this.radius = options.radius || 10;
   this.spacing = options.spacing || 20;
@@ -12,12 +13,13 @@ export default function Tentacle( settings, options ) {
   this.outer = [];
   this.inner = [];
   this.theta = [];
+  this.side = options.side;
 
   for (let i = 0; i < this.length; i++) {
     this.nodes.push(new Node());
   }
 
-  this.move= function (x, y, instant) {
+  this.move = function (x, y, instant) {
 
     this.nodes[0].x = x;
     this.nodes[0].y = y;
@@ -35,7 +37,7 @@ export default function Tentacle( settings, options ) {
     }
   };
 
-  this.update= function () {
+  this.update = function () {
 
     let j, i, n, s, c, dx, dy, da, px, py, node, prev = this.nodes[0];
     let radius = this.radius * settings.thickness;
@@ -66,7 +68,12 @@ export default function Tentacle( settings, options ) {
 
       // change the gravity
       node.vy += settings.wind;
-      node.vx -= settings.gravity;
+
+      if (options.side === 'left') {
+        node.vx += settings.gravity;
+      } else {
+        node.vx -= settings.gravity;
+      }
 
       node.ox = node.x;
       node.oy = node.y;
@@ -92,7 +99,7 @@ export default function Tentacle( settings, options ) {
     }
   };
 
-  this.draw= function (ctx) {
+  this.draw = function (ctx) {
 
       let s, e;
 

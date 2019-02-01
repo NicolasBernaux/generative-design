@@ -24,7 +24,12 @@ module.exports = {
     ]),
     new HtmlWebpackPlugin({
       template: Path.resolve(__dirname, '../src/index.html')
-    })
+    }),
+    new HtmlWebpackPlugin({
+      title: 'exemple',
+      filename: 'exemple.html',
+      template: Path.resolve(__dirname, '../src/exemple.html'),
+    }),
   ],
   resolve: {
     alias: {
