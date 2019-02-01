@@ -1,0 +1,77 @@
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  @media (min-width: 768px) {
+    .container {
+      width: 750px;
+    }
+  }
+  @media (min-width: 992px) {
+    .container {
+      width: 970px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .container {
+      width: 1170px;
+    }
+  }
+.home-hero{
+    background-image: #222222;
+    &__wrapper{
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &__navigation{
+        display: flex;
+        align-items: center;
+        padding: 20px;
+    }
+    &__links{
+        font-family: Marvel;
+        font-family: 1rem;
+        text-decoration: none;
+        color: $black;
+        margin-right: 50px;
+        &--active{
+            opacity: 1;
+          }
+        &--inactive{
+        opacity: 0.6;
+        }
+        &:last-child{
+            margin-right: 0px;
+        }
+    }
+    &__logo{
+        height: 30px;
+        margin-right: 50px;
+    }
+    &__center{
+        text-align: center;
+    }
+    &__footer{
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 20px;
+        img{
+            height: 30px;
+        }
+    }
+}
+.title__venom{
+    font-family: Venom;
+    font-size: 290px;
+    color: $black;
+    letter-spacing: 70px;
+}
+.txt-paragraph{
+    font-family: Marvel;
+    font-size: 1rem;
+    color: $black;
+}
