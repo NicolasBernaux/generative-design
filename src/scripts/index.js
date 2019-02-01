@@ -2,7 +2,6 @@ import "./lib/sketch.min";
 
 var settings = {
   interactive: false,
-  headRadius: 60,
   thickness: 18,
   tentacles: 30,
   friction: 0.02,
@@ -113,8 +112,9 @@ Tentacle.prototype = {
       node.vx *= this.friction * (1 - settings.friction);
       node.vy *= this.friction * (1 - settings.friction);
 
-      node.vx += settings.wind;
-      node.vy += settings.gravity;
+      // change the gravity
+      node.vy += settings.wind;
+      node.vx -= settings.gravity;
 
       node.ox = node.x;
       node.oy = node.y;
@@ -167,7 +167,6 @@ Tentacle.prototype = {
 
 var ease = 0.1;
 var modified = false;
-var radius = settings.headRadius;
 var tentacles = [];
 var center = { x:0, y:0 };
 var scale = window.devicePixelRatio || 1;
@@ -187,7 +186,7 @@ var sketch = Sketch.create({
     for ( var i = 0; i < settings.tentacles; i++ ) {
 
       tentacle = new Tentacle({
-        length: random( 10, 20 ),
+        length: random( 19, 20 ),
         radius: random( 0.05, 1.0 ),
         spacing: random( 0.2, 1.0 ),
         friction: random( 0.77, 0.88 )
@@ -200,14 +199,14 @@ var sketch = Sketch.create({
 
   update: function() {
 
-    var t, cx, cy, pulse;
+    var t, cx, cy;
 
     t = this.millis * 0.001;
 
     if ( settings.pulse ) {
-
-      pulse = pow( sin( t * PI ), 18 );
-      radius = settings.headRadius * 0.5 + settings.headRadius * 0.5 * pulse;
+      window.setTimeout(() => {
+      center.y += random( 200, 500 );
+      },2000);
     }
 
     if ( settings.interactive ) {
@@ -223,6 +222,7 @@ var sketch = Sketch.create({
       cx = this.width * 0.5;
       cy = this.height * 0.5;
 
+      // Calcul for the default mouvement
       center.x = cx + sin( t * 0.002 ) * cos( t * 0.00005 ) * cx * 0.5;
       center.y = cy + sin( t * 0.003 ) * tan( sin( t * 0.0003 ) * 1.15 ) * cy * 0.4;
     }
@@ -236,10 +236,10 @@ var sketch = Sketch.create({
 
       theta = i * step;
 
-      px = cos( theta ) * radius;
-      py = sin( theta ) * radius;
+      px = cos( theta ) ;
+      py = sin( theta ) ;
 
-      tentacle.move( center.x + px, center.y + py );
+      tentacle.move( center.x + 100 + px, center.y + py * (i *5) );
       tentacle.update();
     }
   },
@@ -248,19 +248,10 @@ var sketch = Sketch.create({
     this.fillStyle = '#222222';
     this.fillRect(0, 0, this.width, this.height);
 
-
-    this.globalAlpha = 1.0;
-
     // draw tentacules
     for ( var i = 0, n = settings.tentacles; i < n; i++ ) {
       tentacles[i].draw( this );
     }
-
-    // draw circle opacity
-    this.beginPath();
-    this.arc( center.x, center.y, radius + settings.thickness, 0, TWO_PI );
-    this.fillStyle = settings.tentaclesFill;
-    this.fill();
   },
 
   mousedown: function() {
@@ -269,7 +260,7 @@ var sketch = Sketch.create({
 
       if ( !modified ) {
         settings.length = 60;
-        settings.gravity = 0.1;
+        // settings.gravity = 1;
         settings.wind = 0.0;
       }
   },
