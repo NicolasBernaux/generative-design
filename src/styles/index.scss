@@ -1,5 +1,26 @@
-$body-color: blue;
+@import "reset.scss";
+@import "colors.scss";
+@import "fonts.scss";
+@import "home.scss";
+
 
 body {
-  color: $body-color;
+  font-family: Venom;
 }
+.mb-50{
+  margin-bottom: 50px;
+}
+
+.button{
+  &--primary{
+    background: black;
+    font-family: Marvel;
+    font-size: 1rem;
+    color: $white;
+    padding: 20px 80px;
+    text-decoration: none;
+    letter-spacing: 1;
+  }
+}
+
+@import "home.scss";

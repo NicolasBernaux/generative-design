@@ -26,9 +26,9 @@ module.exports = {
       template: Path.resolve(__dirname, '../src/index.html')
     }),
     new HtmlWebpackPlugin({
-      title: 'exemple',
-      filename: 'exemple.html',
-      template: Path.resolve(__dirname, '../src/exemple.html'),
+      title: 'index-bis',
+      filename: 'index-bis.html',
+      template: Path.resolve(__dirname, '../src/index-bis.html'),
     }),
   ],
   resolve: {
