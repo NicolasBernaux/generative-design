@@ -16,82 +16,83 @@ export default function Tentacle( settings, options ) {
   for (let i = 0; i < this.length; i++) {
     this.nodes.push(new Node());
   }
-    this.move= function (x, y, instant) {
 
-      this.nodes[0].x = x;
-      this.nodes[0].y = y;
+  this.move= function (x, y, instant) {
 
-      if (instant) {
+    this.nodes[0].x = x;
+    this.nodes[0].y = y;
 
-        let i, node;
+    if (instant) {
 
-        for (i = 1; i < this.length; i++) {
+      let i, node;
 
-          node = this.nodes[i];
-          node.x = x;
-          node.y = y;
-        }
-      }
-    },
-
-    this.update= function () {
-
-      let j, i, n, s, c, dx, dy, da, px, py, node, prev = this.nodes[0];
-      let radius = this.radius * settings.thickness;
-      let step = radius / this.length;
-
-      for (i = 1, j = 0; i < this.length; i++, j++) {
+      for (i = 1; i < this.length; i++) {
 
         node = this.nodes[i];
-
-        node.x += node.vx;
-        node.y += node.vy;
-
-        dx = prev.x - node.x;
-        dy = prev.y - node.y;
-        da = Math.atan2(dy, dx);
-
-        px = node.x + cos(da) * this.spacing * settings.length;
-        py = node.y + sin(da) * this.spacing * settings.length;
-
-        node.x = prev.x - (px - node.x);
-        node.y = prev.y - (py - node.y);
-
-        node.vx = node.x - node.ox;
-        node.vy = node.y - node.oy;
-
-        node.vx *= this.friction * (1 - settings.friction);
-        node.vy *= this.friction * (1 - settings.friction);
-
-        // change the gravity
-        node.vy += settings.wind;
-        node.vx -= settings.gravity;
-
-        node.ox = node.x;
-        node.oy = node.y;
-
-        s = sin(da + HALF_PI);
-        c = cos(da + HALF_PI);
-
-        this.outer[j] = {
-          x: prev.x + c * radius,
-          y: prev.y + s * radius
-        };
-
-        this.inner[j] = {
-          x: prev.x - c * radius,
-          y: prev.y - s * radius
-        };
-
-        this.theta[j] = da;
-
-        radius -= step;
-
-        prev = node;
+        node.x = x;
+        node.y = y;
       }
-    },
+    }
+  };
 
-    this.draw= function (ctx) {
+  this.update= function () {
+
+    let j, i, n, s, c, dx, dy, da, px, py, node, prev = this.nodes[0];
+    let radius = this.radius * settings.thickness;
+    let step = radius / this.length;
+
+    for (i = 1, j = 0; i < this.length; i++, j++) {
+
+      node = this.nodes[i];
+
+      node.x += node.vx;
+      node.y += node.vy;
+
+      dx = prev.x - node.x;
+      dy = prev.y - node.y;
+      da = Math.atan2(dy, dx);
+
+      px = node.x + cos(da) * this.spacing * settings.length;
+      py = node.y + sin(da) * this.spacing * settings.length;
+
+      node.x = prev.x - (px - node.x);
+      node.y = prev.y - (py - node.y);
+
+      node.vx = node.x - node.ox;
+      node.vy = node.y - node.oy;
+
+      node.vx *= this.friction * (1 - settings.friction);
+      node.vy *= this.friction * (1 - settings.friction);
+
+      // change the gravity
+      node.vy += settings.wind;
+      node.vx -= settings.gravity;
+
+      node.ox = node.x;
+      node.oy = node.y;
+
+      s = sin(da + HALF_PI);
+      c = cos(da + HALF_PI);
+
+      this.outer[j] = {
+        x: prev.x + c * radius,
+        y: prev.y + s * radius
+      };
+
+      this.inner[j] = {
+        x: prev.x - c * radius,
+        y: prev.y - s * radius
+      };
+
+      this.theta[j] = da;
+
+      radius -= step;
+
+      prev = node;
+    }
+  };
+
+  this.draw= function (ctx) {
 
       let s, e;
 
@@ -114,4 +115,4 @@ export default function Tentacle( settings, options ) {
         ctx.stroke();
       }
     };
-  };
+};

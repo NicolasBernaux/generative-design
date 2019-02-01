@@ -1,9 +1,13 @@
+// Sass
+import '../styles/index.scss';
+
 // Libs
 import "./lib/sketch.min";
 
 // Elements
 import Tentacle from "./Tentacle";
 
+// Tentacles settings
 let settings = {
   interactive: false,
   thickness: 30,
@@ -17,11 +21,13 @@ let settings = {
   wind: -0.5
 };
 
+// Setup parametters
 let ease = 0.1;
 let modified = false;
 let tentacles = [];
 let center = { x:0, y:0 };
 let scale = window.devicePixelRatio || 1;
+let backgroundColor = '#222222';
 
 let sketch = Sketch.create({
 
@@ -101,7 +107,7 @@ let sketch = Sketch.create({
   },
 
   draw: function() {
-    this.fillStyle = '#222222';
+    this.fillStyle = backgroundColor;
     this.fillRect(0, 0, this.width, this.height);
 
     // draw tentacules
