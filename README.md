@@ -1,30 +1,23 @@
-# Webpack Frontend Starterkit
+# Generative design
 
-A lightweight foundation for your next webpack based frontend project.
+![preview project](public/images/preview/preview.png)
 
+A school project to announce the release of the [venom 2](http://www.allocine.fr/film/fichefilm_gen_cfilm=269758.html) movie. [See the live project here](https://venom2.netlify.com/)
 
 ### Installation
 
 ```
-npm install
+$npm install
 ```
 
 ### Start Dev Server
 
 ```
-npm start
+$npm run dev
 ```
 
 ### Build Prod Version
 
 ```
-npm run build
+$npm run build
 ```
-
-### Features:
-
-* ES6 Support via [babel](https://babeljs.io/) (v7)
-* SASS Support via [sass-loader](https://github.com/jtangelder/sass-loader)
-* Linting via [eslint-loader](https://github.com/MoOx/eslint-loader)
-
-When you run `npm run build` we use the [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) to move the css to a separate file. The css file gets included in the head of the `index.html`.
