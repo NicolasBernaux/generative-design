@@ -2,6 +2,6 @@
 import Form from "./Form";
 import { ask } from "../../utils/mockAsks";
 
-const test2 = new Form(ask);
+const formulaire = new Form(ask);
 
-test2.start();
+formulaire.render();

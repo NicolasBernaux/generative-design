@@ -1,69 +1,59 @@
 class Form {
-  constructor(ask) {
-    this.ask = ask;
-    this.count = 0;
-    this.indexOfAsk = 0;
+  constructor(questions) {
+    this.questions = questions;
+    this.questionIndex = 0;
+    this.score = 0;
+    this.dom = {
+      container: document.getElementById("container"),
+      card: null
+    };
   }
 
-  getCount() {
-    return this.count;
+  getScore() {
+    return this.score;
   }
 
-  updateCount(value) {
-    this.count += parseInt(value);
+  addScore(value) {
+    this.score += parseInt(value, 10);
   }
 
-  onClickQuestion(element) {
-    element = element || window.event;
-    const target = element.target || element.srcElement;
+  onQuestionClick(event) {
+    event = event || window.event;
+    const target = event.target || event.srcElement;
     const value = target.dataset.value;
-    const questions = document.querySelectorAll(".question");
-    questions.forEach((element) => element.parentNode.removeChild(element));
-    this.indexOfAsk++;
-    this.updateCount(value);
-    if (this.indexOfAsk >= this.ask.length) {
-      // End of questionnaire
-      document
-        .querySelector(".card")
-        .parentNode.removeChild(document.querySelector(".card"));
-    } else {
-      this.start();
+    this.addScore(value);
+
+    this.questionIndex++;
+    this.dom.card.remove();
+    if (this.questionIndex < this.questions.length) {
+      this.render();
     }
   }
 
-  start() {
-    const card = document.createElement("div");
-    card.classList.add("card");
+  render() {
+    this.dom.card = document.createElement("div");
+    this.dom.card.classList.add("card");
 
-    const title = document.createElement("h1");
-    title.classList.add("title-ask");
-    card.appendChild(title);
+    const titleAsk = document.createElement("h1");
+    titleAsk.classList.add("title-ask");
+    this.dom.card.appendChild(titleAsk);
 
-    const _ask = document.createElement("ul");
-    _ask.classList.add("ask");
-    card.appendChild(_ask);
+    const askContainer = document.createElement("ul");
+    askContainer.classList.add("ask");
+    this.dom.card.appendChild(askContainer);
 
-    document.getElementById("container").appendChild(card);
+    this.dom.container.appendChild(this.dom.card);
 
-    this.titleAsk = document.querySelector(".title-ask");
-    this.askContainer = document.querySelector(".ask");
+    titleAsk.textContent = this.questions[this.questionIndex].question;
 
-    this.titleAsk.innerHTML = this.ask[this.indexOfAsk].question;
-
-    for (
-      let index = 0;
-      index < this.ask[this.indexOfAsk].responses.length;
-      index++
-    ) {
-      const question = document.createElement("li");
-      question.classList.add("question");
-      question.innerHTML = this.ask[this.indexOfAsk].responses[index].title;
-      question.dataset.value = this.ask[this.indexOfAsk].responses[index].value;
-      question.addEventListener("click", (element) =>
-        this.onClickQuestion(element)
-      );
-      this.askContainer.appendChild(question);
-    }
+    this.questions[this.questionIndex].choices.forEach((choice) => {
+      const $choice = document.createElement("li");
+      $choice.classList.add("question");
+      $choice.textContent = choice.title;
+      $choice.dataset.value = choice.value;
+      $choice.addEventListener("click", (event) => this.onQuestionClick(event));
+      askContainer.appendChild($choice);
+    });
   }
 }
 
