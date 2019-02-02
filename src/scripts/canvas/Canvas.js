@@ -12,7 +12,7 @@ export default function Canvas() {
     thickness: 30,
     tentacles: 120,
     friction: 0.02,
-    gravity: 0.1,
+    gravity: 0.3,
     tentaclesFill: '#000000',
     tentaclesStroke: '#4c4c4c',
     length: 30,
@@ -64,28 +64,15 @@ export default function Canvas() {
 
     update: function() {
 
-      let t, cx, cy;
-
-      t = this.millis * 0.001;
-
       if ( settings.pulse ) {
         position.y = random( -20, 20 );
       }
-      t = this.millis;
-      cx = this.width * 0.5;
-      cy = this.height * 0.5;
 
-      let px, py, theta, tentacle;
-      let step = TWO_PI / settings.tentacles;
+      let tentacle;
 
       for ( let i = 0;  i < settings.tentacles; i++ ) {
 
         tentacle = tentacles[i];
-
-        theta = i * step;
-
-        px = cos( theta );
-        py = sin( theta );
 
         if (tentacle.side === 'left') {
           tentacle.move(0 /* + pourcentage question*/, position.y + (i * this.tentaculesSpacing) );
