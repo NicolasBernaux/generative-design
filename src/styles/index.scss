@@ -1,49 +1,15 @@
 @import "reset.scss";
 @import "colors.scss";
 @import "fonts.scss";
+@import "default.scss";
 @import "home.scss";
+@import "card.scss";
+@import "button.scss";
 
-body {
-  font-family: Venom;
-}
-.mb-50 {
-  margin-bottom: 50px;
-}
-
-.button {
-  &--primary {
-    background: black;
-    font-family: Marvel;
-    font-size: 1rem;
-    color: $white;
-    padding: 20px 80px;
-    text-decoration: none;
-    letter-spacing: 1;
-  }
-}
 
 @import "home.scss";
-.content {
-  justify-content: center;
-  align-items: center;
-}
+//.content {
+//  justify-content: center;
+//  align-items: center;
+//}
 
-.card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%);
-  width: 300px;
-  background-color: $white;
-  .title-ask {
-    font-weight: bold;
-  }
-  .ask {
-    margin: 0;
-    padding: 0;
-    cursor: pointer;
-    li {
-      display: inline;
-    }
-  }
-}

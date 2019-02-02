@@ -1,0 +1,23 @@
+.card {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  width: 300px;
+  font-family: 'Marvel', sans-serif;
+  text-align: center;
+
+  .title-ask {
+    font-weight: bold;
+  }
+  .ask {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+
+    li {
+      display: inline;
+    }
+  }
+}
