@@ -3,16 +3,15 @@
 @import "fonts.scss";
 @import "home.scss";
 
-
 body {
   font-family: Venom;
 }
-.mb-50{
+.mb-50 {
   margin-bottom: 50px;
 }
 
-.button{
-  &--primary{
+.button {
+  &--primary {
     background: black;
     font-family: Marvel;
     font-size: 1rem;
@@ -24,3 +23,27 @@ body {
 }
 
 @import "home.scss";
+.content {
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  width: 300px;
+  background-color: $white;
+  .title-ask {
+    font-weight: bold;
+  }
+  .ask {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    li {
+      display: inline;
+    }
+  }
+}
