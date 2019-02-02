@@ -19,12 +19,12 @@ export default function Tentacle( settings, options ) {
     this.nodes.push(new Node());
   }
 
-  this.move = function (x, y, instant) {
+  this.move = function (x, y, init) {
 
     this.nodes[0].x = x;
     this.nodes[0].y = y;
 
-    if (instant) {
+    if (init) {
 
       let i, node;
 
@@ -39,7 +39,7 @@ export default function Tentacle( settings, options ) {
 
   this.update = function () {
 
-    let j, i, n, s, c, dx, dy, da, px, py, node, prev = this.nodes[0];
+    let j, i, s, c, dx, dy, da, px, py, node, prev = this.nodes[0];
     let radius = this.radius * settings.thickness;
     let step = radius / this.length;
 
