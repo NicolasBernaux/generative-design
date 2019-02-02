@@ -1,7 +1,7 @@
 export const ask = [
   {
     question: "Salut ca va ?",
-    responses: [
+    choices: [
       {
         title: "lorem 1",
         value: 1
@@ -22,7 +22,7 @@ export const ask = [
   },
   {
     question: "Salut mon coco ?",
-    responses: [
+    choices: [
       {
         title: "Manger",
         value: 1
@@ -43,7 +43,7 @@ export const ask = [
   },
   {
     question: "Salut mon gars ?",
-    responses: [
+    choices: [
       {
         title: "lorem 1",
         value: 1
