@@ -7,23 +7,37 @@ class Form {
       container: document.getElementById("container"),
       card: null
     };
-  }
-
-  getScore() {
-    return this.score;
+    this.progression = 0;
   }
 
   addScore(value) {
     this.score += parseInt(value, 10);
   }
 
+  changeProgression() {
+    this.progression = this.questionIndex / this.questions.length;
+  }
+
+  emitEvent() {
+    const event = new CustomEvent('changeScore', {
+      'detail': {
+        'score': this.score,
+        'progression': this.progression,
+      }
+    });
+    document.dispatchEvent(event);
+  }
+
   onQuestionClick(event) {
     event = event || window.event;
     const target = event.target || event.srcElement;
     const value = target.dataset.value;
-    this.addScore(value);
-
     this.questionIndex++;
+
+    this.addScore(value);
+    this.changeProgression();
+    this.emitEvent();
+
     this.dom.card.remove();
     if (this.questionIndex < this.questions.length) {
       this.render();

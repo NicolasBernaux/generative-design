@@ -8,6 +8,7 @@ export default function Tentacle( settings, options ) {
   this.radius = options.radius || 10;
   this.spacing = options.spacing || 20;
   this.friction = options.friction || 0.8;
+  this.positionY = random(0, options.canvasHeight);
 
   this.nodes = [];
   this.outer = [];
@@ -19,19 +20,23 @@ export default function Tentacle( settings, options ) {
     this.nodes.push(new Node());
   }
 
-  this.move = function (x, y, init) {
+  this.move = function (y, canvasWidth, init) {
 
-    this.nodes[0].x = x;
-    this.nodes[0].y = y;
+    this.nodes[0].y = y + this.positionY;
 
     if (init) {
+      if (this.side === "left") {
+        this.nodes[0].x = -10;
+      } else {
+        this.nodes[0].x = canvasWidth + 10;
+      }
 
       let i, node;
 
       for (i = 1; i < this.length; i++) {
 
         node = this.nodes[i];
-        node.x = x;
+        node.x = this.nodes[0].x;
         node.y = y;
       }
     }

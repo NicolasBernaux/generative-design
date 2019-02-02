@@ -46,6 +46,7 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.0.0"
+    "@babel/polyfill": "^7.0.0",
+    "color-interpolate": "^1.0.4"
   }
 }
