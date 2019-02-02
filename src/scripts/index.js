@@ -32,9 +32,9 @@ document.addEventListener('changeScore', (e) => {
     canvas.update(e.detail.progression, e.detail.score);
   } else {
     const interval = setInterval(() => {
-      canvas.update(e.detail.progression, e.detail.score);
+      canvas.update(e.detail.progression, e.detail.score, false);
       e.detail.progression++;
-      if (e.detail.progression >= 3) {
+      if (e.detail.progression >= 5) {
         clearInterval(interval);
       }
     }, 100);

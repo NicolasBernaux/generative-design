@@ -12,12 +12,16 @@ let settings = {
   thickness: 30,
   tentacles: 90,
   friction: 0.02,
-  gravity: 0.1,
+  gravity: 0.15,
   tentaclesFill: '#000000',
   tentaclesStroke: '#4c4c4c',
   length: 30,
   pulse: true,
   wind: 0,
+  movement: {
+    'min': -20,
+    'max': 20,
+  }
 };
 
 // Setup parametters
@@ -77,7 +81,7 @@ export default function Canvas($element) {
 
     update: function() {
       if ( settings.pulse ) {
-        position.y = random( -20, 20 );
+        position.y = random(settings.movement.min, settings.movement.max );
       }
       for ( let i = 0;  i < tentacles.length ; i++ ) {
         tentacles[i].move(position.y);
@@ -109,12 +113,23 @@ export default function Canvas($element) {
 
 };
 
-Canvas.prototype.update = function(progress, score) {
+Canvas.prototype.update = function(progress, score, movement) {
   const newTentacles = 30;
   settings.gravity += 0.06;
 
   // Change color
   settings.tentaclesFill = colormap(0);
+
+  // Change movement
+  if (movement) {
+    settings.movement.min -= 5;
+    settings.movement.max += 5;
+    console.log(settings.movement);
+  } else {
+    settings.gravity += 0.06;
+    settings.movement.min = -10;
+    settings.movement.max = 10;
+  }
 
   // New tentacles
   for (let i= 0; i <= newTentacles; i++) {
