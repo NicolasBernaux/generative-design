@@ -28,6 +28,7 @@ if (canvasContainer && buttonStart) {
 }
 
 document.addEventListener('changeScore', (e) => {
+  e.preventDefault();
   if (e.detail.progression < 1) {
     canvas.update(e.detail.progression, e.detail.score);
   } else {

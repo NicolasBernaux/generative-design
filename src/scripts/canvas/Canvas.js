@@ -113,18 +113,17 @@ export default function Canvas($element) {
 
 };
 
-Canvas.prototype.update = function(progress, score, movement) {
+Canvas.prototype.update = function(progress, score, movement = true) {
   const newTentacles = 30;
-  settings.gravity += 0.06;
+  settings.gravity += 0.000;
 
   // Change color
   settings.tentaclesFill = colormap(0);
 
   // Change movement
   if (movement) {
-    settings.movement.min -= 5;
-    settings.movement.max += 5;
-    console.log(settings.movement);
+    settings.movement.min -= 7;
+    settings.movement.max += 7;
   } else {
     settings.gravity += 0.06;
     settings.movement.min = -10;
