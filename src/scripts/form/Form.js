@@ -30,25 +30,27 @@ class Form {
   }
 
   onQuestionClick(event) {
-    event = event || window.event;
-    const target = event.target || event.srcElement;
-    const value = target.dataset.value;
-    this.questionIndex++;
+    if (this.dom.card.classList.contains("card-visible")) {
+      event = event || window.event;
+      const target = event.target || event.srcElement;
+      const value = target.dataset.value;
+      this.questionIndex++;
 
-    this.addScore(value);
-    this.changeProgression();
-    this.emitEvent();
+      this.addScore(value);
+      this.changeProgression();
+      this.emitEvent();
 
-    this.soundClick.play();
+      this.soundClick.play();
 
-    this.dom.card.classList.remove("card-visible");
+      this.dom.card.classList.remove("card-visible");
 
-    setTimeout(() => {
-      this.dom.card.remove();
-      if (this.questionIndex < this.questions.length) {
-        this.render();
-      }
-    }, 1000);
+      setTimeout(() => {
+        this.dom.card.remove();
+        if (this.questionIndex < this.questions.length) {
+          this.render();
+        }
+      }, 1000);
+    }
   }
 
   render() {
