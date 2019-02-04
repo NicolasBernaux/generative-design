@@ -36,13 +36,13 @@ let settings = {
 // Setup parametters
 let tentacles = [];
 let position = { x:0, y:0 };
-let backgroundColor = 'rgb(240,240,240)';
+let backgroundColor = 'rgb(240,240,240, 0.9)';
 let opacity = 0;
 let canvasHeight;
 let colormap = interpolate([settings.tentacleFillColor.venom, settings.tentacleFillColor.carnage]);
 let maxScore;
 
-settings.tentaclesFill= colormap(0);
+settings.tentaclesFill = colormap(0);
 
 
 export default function Canvas($element, questions) {
