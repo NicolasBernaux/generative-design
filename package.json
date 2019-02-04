@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "color-interpolate": "^1.0.4"
+    "color-interpolate": "^1.0.4",
+    "gsap": "^2.0.2"
   }
 }

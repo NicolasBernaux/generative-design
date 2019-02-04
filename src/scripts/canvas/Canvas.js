@@ -1,7 +1,7 @@
-
 // Libs
 import "../lib/sketch.min";
 import interpolate from 'color-interpolate';
+import { TweenLite, Circ } from 'gsap';
 
 // Elements
 import Tentacle from "./Tentacle";
@@ -21,18 +21,28 @@ let settings = {
   movement: {
     'min': -20,
     'max': 20,
-  }
+  },
+  tentacleStrokeColor: {
+    'venom': "rgb(76,76,76)",
+    'carnage': 'rgb(215, 0, 0)',
+  },
+  tentacleFillColor: {
+    'venom': "rgb(0,0,0)",
+    'carnage': 'rgb(255, 0, 0)',
+  },
+  colorRatio: 0,
 };
 
 // Setup parametters
-let colorVenom = "rgb(0,0,0)";
-let colorCarnage = "rgb(255, 0, 0)";
 let tentacles = [];
 let position = { x:0, y:0 };
-let backgroundColor = '#F0F0F0F0';
+let backgroundColor = 'rgb(240,240,240)';
 let opacity = 0;
 let canvasHeight;
-let colormap = interpolate([colorVenom, colorCarnage]);
+let colormap = interpolate([settings.tentacleFillColor.venom, settings.tentacleFillColor.carnage]);
+
+settings.tentaclesFill= colormap(0);
+
 
 export default function Canvas($element) {
 
@@ -115,9 +125,23 @@ Canvas.prototype.update = function(progress, score, movement = true) {
   const newTentacles = 30;
   settings.gravity += 0.000;
 
-  // Change color
 
-  settings.tentaclesFill = colormap(0);
+  // Change color
+  let ratio = {val: settings.colorRatio};
+  let result;
+  if (score > 0) {
+    result = 0;
+  } else {
+    result = (-score / 20);
+  }
+  // ease color
+  const progressColor = TweenLite.to(ratio, 1, { val: result});
+  progressColor.eventCallback('onUpdate', function () {
+    settings.colorRatio = ratio.val;
+    settings.tentaclesFill = colormap(settings.colorRatio);
+  });
+
+
 
   // Change movement
   if (movement) {
