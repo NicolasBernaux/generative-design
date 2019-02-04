@@ -41,10 +41,14 @@ class Form {
 
     this.soundClick.play();
 
-    this.dom.card.remove();
-    if (this.questionIndex < this.questions.length) {
-      this.render();
-    }
+    this.dom.card.classList.remove("card-visible");
+
+    setTimeout(() => {
+      this.dom.card.remove();
+      if (this.questionIndex < this.questions.length) {
+        this.render();
+      }
+    }, 1000);
   }
 
   render() {
@@ -77,6 +81,9 @@ class Form {
         );
         askContainer.appendChild($choice);
       });
+    setTimeout(() => {
+      this.dom.card.classList.add("card-visible");
+    }, 10);
   }
 }
 

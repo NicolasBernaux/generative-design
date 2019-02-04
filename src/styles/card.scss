@@ -5,8 +5,14 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 300px;
-  font-family: 'Marvel', sans-serif;
+  font-family: "Marvel", sans-serif;
   text-align: center;
+  opacity: 0;
+  transition: opacity 1s ease;
+
+  &.card-visible {
+    opacity: 1;
+  }
 
   .title-ask {
     font-family: DeValencia;
@@ -23,23 +29,32 @@
 
     li {
       background: black;
-      font-family: 'Marvel', sans-serif;
+      font-family: "Marvel", sans-serif;
       font-size: 1rem;
       color: $white;
       padding: 20px 80px;
       text-decoration: none;
       letter-spacing: 1;
       margin-bottom: 10px;
-      transition: transform .2s ease,box-shadow .2s ease;
-      will-change: transform,box-shadow;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      will-change: transform, box-shadow;
       text-transform: uppercase;
-      &:hover{
+      &:hover {
         transform: translateY(-3px) translateZ(0);
-        box-shadow: 0 16px 32px 0 rgba(32,27,77,.12), 0 0 0 transparent;
+        box-shadow: 0 16px 32px 0 rgba(32, 27, 77, 0.12), 0 0 0 transparent;
       }
-      &:last-child{
+      &:last-child {
         margin-bottom: 0;
       }
     }
+  }
+}
+
+@keyframes FADE-IN {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
