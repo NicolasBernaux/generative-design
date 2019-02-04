@@ -31,8 +31,6 @@ let tentacles = [];
 let position = { x:0, y:0 };
 let backgroundColor = '#F0F0F0F0';
 let opacity = 0;
-let progress = 0;
-let score = 0;
 let canvasHeight;
 let colormap = interpolate([colorVenom, colorCarnage]);
 
@@ -118,6 +116,7 @@ Canvas.prototype.update = function(progress, score, movement = true) {
   settings.gravity += 0.000;
 
   // Change color
+
   settings.tentaclesFill = colormap(0);
 
   // Change movement
@@ -125,7 +124,7 @@ Canvas.prototype.update = function(progress, score, movement = true) {
     settings.movement.min -= 7;
     settings.movement.max += 7;
   } else {
-    settings.gravity += 0.06;
+    settings.gravity += 0.5;
     settings.movement.min = -10;
     settings.movement.max = 10;
   }
@@ -134,16 +133,20 @@ Canvas.prototype.update = function(progress, score, movement = true) {
   for (let i= 0; i <= newTentacles; i++) {
     if (i > newTentacles/2) {
       createTentacle('left', 20 + (progress * 25), 21 + (progress * 25));
-      if (i%6) {
+      if (i%10) {
         tentacles.splice(0, 1);
       }
     } else {
       createTentacle('right', 20 + (progress * 25), 21 + (progress * 25));
-      if (i%6) {
+      if (i%10) {
         tentacles.splice(tentacles.length / 2 + 1, 1);
       }
     }
   }
+};
+
+Canvas.prototype.animEnd = function () {
+
 };
 
 const createTentacle = function(side, minHeight, maxHeight) {
