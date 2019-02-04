@@ -8,6 +8,7 @@ class Form {
       card: null
     };
     this.progression = 0;
+    this.soundClick = new Audio("public/audio/sound_clic_others_buttons.mp3");
   }
 
   addScore(value) {
@@ -19,10 +20,10 @@ class Form {
   }
 
   emitEvent() {
-    const event = new CustomEvent('changeScore', {
-      'detail': {
-        'score': this.score,
-        'progression': this.progression,
+    const event = new CustomEvent("changeScore", {
+      detail: {
+        score: this.score,
+        progression: this.progression
       }
     });
     document.dispatchEvent(event);
@@ -37,6 +38,8 @@ class Form {
     this.addScore(value);
     this.changeProgression();
     this.emitEvent();
+
+    this.soundClick.play();
 
     this.dom.card.remove();
     if (this.questionIndex < this.questions.length) {
@@ -60,14 +63,20 @@ class Form {
 
     titleAsk.textContent = this.questions[this.questionIndex].question;
 
-    this.questions[this.questionIndex].choices.forEach((choice) => {
-      const $choice = document.createElement("li");
-      $choice.classList.add("question");
-      $choice.textContent = choice.title;
-      $choice.dataset.value = choice.value;
-      $choice.addEventListener("click", (event) => this.onQuestionClick(event));
-      askContainer.appendChild($choice);
-    });
+    this.questions[this.questionIndex].choices
+      .sort(() => {
+        return 0.5 - Math.random();
+      })
+      .forEach((choice) => {
+        const $choice = document.createElement("li");
+        $choice.classList.add("question");
+        $choice.textContent = choice.title;
+        $choice.dataset.value = choice.value;
+        $choice.addEventListener("click", (event) =>
+          this.onQuestionClick(event)
+        );
+        askContainer.appendChild($choice);
+      });
   }
 }
 
