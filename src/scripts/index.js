@@ -24,7 +24,7 @@ if (canvasContainer && buttonStart) {
 
     // Launch the canvas
     document.querySelector(".home-hero").classList.add("play");
-    canvas = new Canvas(canvasContainer);
+    canvas = new Canvas(canvasContainer, ask);
   });
 }
 

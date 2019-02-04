@@ -40,11 +40,13 @@ let backgroundColor = 'rgb(240,240,240)';
 let opacity = 0;
 let canvasHeight;
 let colormap = interpolate([settings.tentacleFillColor.venom, settings.tentacleFillColor.carnage]);
+let maxScore;
 
 settings.tentaclesFill= colormap(0);
 
 
-export default function Canvas($element) {
+export default function Canvas($element, questions) {
+  maxScore = questions.length * 2;
 
   // opacity on canvas launching
   const changeOpacity = function() {
@@ -129,10 +131,11 @@ Canvas.prototype.update = function(progress, score, movement = true) {
   // Change color
   let ratio = {val: settings.colorRatio};
   let result;
+  console.log(maxScore);
   if (score > 0) {
     result = 0;
   } else {
-    result = (-score / 20);
+    result = (-score / maxScore);
   }
   // ease color
   const progressColor = TweenLite.to(ratio, 1, { val: result});
