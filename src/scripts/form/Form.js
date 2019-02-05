@@ -37,10 +37,11 @@ class Form {
       const value = target.dataset.value;
       this.questionIndex++;
 
+      console.log(target);
       this.addScore(value);
       this.changeProgression();
       this.emitEvent();
-
+      console.log(this.score);
       this.soundClick.currentTime = 0;
       this.soundClick.play();
 
@@ -83,18 +84,18 @@ class Form {
       .forEach((choice) => {
         const $choice = document.createElement("li");
 
-        const title1 = document.createElement("span");
-        const title2 = document.createElement("button");
-        title1.textContent = choice.title;
-        title2.textContent = choice.title;
+        const $title1 = document.createElement("span");
+        const $title2 = document.createElement("button");
+        $title1.textContent = choice.title;
+        $title2.textContent = choice.title;
+        $title2.dataset.value = choice.value;
         $choice.classList.add("button-container-1");
-        title1.classList.add("mas");
+        $title1.classList.add("mas");
 
-        $choice.appendChild(title1);
-        $choice.appendChild(title2);
+        $choice.appendChild($title1);
+        $choice.appendChild($title2);
 
         $choice.classList.add("question");
-        $choice.dataset.value = choice.value;
         $choice.addEventListener("mouseover", () => this.onMouseOver());
         $choice.addEventListener("click", (event) =>
           this.onQuestionClick(event)
