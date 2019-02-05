@@ -1,19 +1,101 @@
+@mixin button($bcolor, $url, $x1, $y1, $bor, $col) {
+  background: $bcolor;
+  -webkit-mask: url($url);
+  mask: url($url);
+  -webkit-mask-size: $x1 $y1;
+  mask-size: $x1 $y1;
+  border: $bor;
+  color: $col;
+}
+
 .button {
   &--primary {
+    position: relative;
     background: black;
-    font-family: 'Marvel', sans-serif;
+    font-family: "Marvel", sans-serif;
+
     font-size: 1rem;
     min-height: 72px;
     color: $white;
     width: 300px;
     padding: 20px 80px;
     text-decoration: none;
-    letter-spacing: 1;
-    transition: transform .2s ease,box-shadow .2s ease;
-    will-change: transform,box-shadow;
-    &:hover{
+    letter-spacing: 1px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    will-change: transform, box-shadow;
+    &:hover {
       transform: translateY(-3px) translateZ(0);
-      box-shadow: 0 16px 32px 0 rgba(32,27,77,.12), 0 0 0 transparent;
+      box-shadow: 0 16px 32px 0 rgba(32, 27, 77, 0.12), 0 0 0 transparent;
     }
+  }
+}
+
+.button-container-1 {
+  position: relative;
+  height: 72px;
+  overflow: hidden;
+  border: 1px solid;
+  transition: 0.5s;
+  list-style-type: none;
+
+  button {
+    width: 101%;
+    height: 100%;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    letter-spacing: 1;
+    font-family: "Marvel", sans-serif;
+    text-transform: uppercase;
+    @include button(
+      #000,
+      "https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png",
+      2300%,
+      100%,
+      none,
+      #fff
+    );
+    cursor: pointer;
+    -webkit-animation: ani2 0.7s steps(22) forwards;
+    animation: ani2 0.7s steps(22) forwards;
+
+    &:hover {
+      -webkit-animation: ani 0.7s steps(22) forwards;
+      animation: ani 0.7s steps(22) forwards;
+    }
+  }
+}
+
+.mas {
+  position: absolute;
+  color: #000;
+  text-align: center;
+  width: 101%;
+  overflow: hidden;
+  font-family: "Marvel", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+@keyframes ani {
+  from {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+  }
+
+  to {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+}
+
+@keyframes ani2 {
+  from {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+
+  to {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
   }
 }

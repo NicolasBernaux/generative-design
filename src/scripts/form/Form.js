@@ -76,10 +76,23 @@ class Form {
       })
       .forEach((choice) => {
         const $choice = document.createElement("li");
+
+        const title1 = document.createElement("span");
+        const title2 = document.createElement("button");
+        title1.textContent = choice.title;
+        title2.textContent = choice.title;
+        $choice.classList.add("button-container-1");
+        title1.classList.add("mas");
+
+        //title2.classList.add("button2");
+
+        $choice.appendChild(title1);
+        $choice.appendChild(title2);
+
         $choice.classList.add("question");
-        $choice.textContent = choice.title;
         $choice.dataset.value = choice.value;
         $choice.addEventListener("mouseover", () => {
+          this.soundHover.currentTime = 0;
           this.soundHover.play();
         });
         $choice.addEventListener("click", (event) =>
