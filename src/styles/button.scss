@@ -10,66 +10,55 @@
 
 .button {
   &--primary {
-    position: relative;
-    background: black;
+    background: $white;
     font-family: "Marvel", sans-serif;
     font-size: 1rem;
-    min-height: 72px;
     color: $white;
-    width: 300px;
-    padding: 20px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
     letter-spacing: 1px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    will-change: transform, box-shadow;
-    border-radius: 2.33px;
-    &:hover {
-      box-shadow: 0 16px 32px 0 rgba(32, 27, 77, 0.12), 0 0 0 transparent;
-    }
-  }
-}
-
-.button-container-1 {
-  border-radius: 2.33px;
-  position: relative;
-  height: 72px;
-  overflow: hidden;
-  transition: 0.5s;
-  list-style-type: none;
-
-  button {
-    width: 101%;
-    height: 100%;
-    letter-spacing: 1px;
-    font-size: 1rem;
-    font-family: "Marvel", sans-serif;
+    margin-bottom: 10px;
     text-transform: uppercase;
-    @include button(
-      #000,
-      "https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png",
-      2300%,
-      100%,
-      none,
-      #fff
-    );
-    cursor: pointer;
-    animation: ani2 0.7s steps(22) forwards;
-
-    &:hover {
-      animation: ani 0.7s steps(22) forwards;
+    border-radius: 70px;
+    width: 300px;
+    height: 72px;
+    border: none;
+    &__mask1{
+      position: absolute;
+      color: $black;
+      text-align: center;
+      width: 101%;
+      overflow: hidden;
+      font-family: "Marvel", sans-serif;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+    &__mask2{
+      width: 101%;
+      height: 100%;
+      letter-spacing: 1px;
+      font-size: 1rem;
+      font-family: "Marvel", sans-serif;
+      text-transform: uppercase;
+      border-radius: 70px;
+      @include button(
+        $black,
+        "https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png",
+        2300%,
+        100%,
+        none,
+        $white
+      );
+      cursor: pointer;
+      animation: ani2 0.7s steps(22) forwards;
+  
+      &:hover {
+        animation: ani 0.7s steps(22) forwards;
+      }
     }
   }
-}
-
-.mas {
-  position: absolute;
-  color: #000;
-  text-align: center;
-  width: 101%;
-  overflow: hidden;
-  font-family: "Marvel", sans-serif;
-  font-size: 1rem;
-  letter-spacing: 1px;
 }
 
 @keyframes ani {
@@ -81,5 +70,16 @@
   to {
     -webkit-mask-position: 100% 0;
     mask-position: 100% 0;
+  }
+}
+@keyframes ani2 {
+  from {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+
+  to {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
   }
 }

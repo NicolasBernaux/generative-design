@@ -89,8 +89,9 @@ class Form {
         $title1.textContent = choice.title;
         $title2.textContent = choice.title;
         $title2.dataset.value = choice.value;
-        $choice.classList.add("button-container-1");
-        $title1.classList.add("mas");
+        $choice.classList.add("button--primary");
+        $title1.classList.add("button--primary__mask1");
+        $title2.classList.add("button--primary__mask2");
 
         $choice.appendChild($title1);
         $choice.appendChild($title2);

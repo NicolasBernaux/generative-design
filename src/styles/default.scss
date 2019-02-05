@@ -5,3 +5,35 @@ body {
 .mb-50 {
   margin-bottom: 50px;
 }
+.title__venom{
+  font-family: 'Venom', sans-serif;
+  font-size: 290px;
+  color: $black;
+  letter-spacing: 70px;
+  @media (max-width: 767px){
+      font-size: 60px;
+      letter-spacing: 20px;
+  }
+}
+.title__questions{
+  font-family: DeValencia, sans-serif;
+  font-size: 30px;
+  line-height: 1.5;
+  color: $black;
+  letter-spacing: 0;
+  text-align: center;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  @media (max-width: 767px){
+      font-size: 24px;
+  }
+}
+.txt-paragraph{
+  font-family: 'Marvel', sans-serif;
+  font-size: 1rem;
+  color: $black;
+}
+.img-fluid{
+  max-width: 100%;
+  height: auto;
+}

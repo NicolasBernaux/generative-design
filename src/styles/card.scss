@@ -15,8 +15,9 @@
   }
 
   .title-ask {
-    font-family: "Marvel", sans-serif;
-    font-size: 28px;
+    font-family: DeValencia, sans-serif;
+    font-size: 30px;
+    line-height: 1.5;
     color: $black;
     letter-spacing: 0;
     text-align: center;
@@ -29,25 +30,6 @@
     cursor: pointer;
 
     li {
-      background: $white;
-      font-family: "Marvel", sans-serif;
-      font-size: 1rem;
-      color: $white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 72px;
-      text-decoration: none;
-      letter-spacing: 1;
-      margin-bottom: 10px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      will-change: transform, box-shadow;
-      text-transform: uppercase;
-      border-radius: 70px;
-      &:hover {
-        transform: translateY(-3px) translateZ(0);
-        box-shadow: 0 16px 32px 0 rgba(32, 27, 77, 0.12), 0 0 0 transparent;
-      }
       &:last-child {
         margin-bottom: 0;
       }
