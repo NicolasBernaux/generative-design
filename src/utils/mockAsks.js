@@ -1,71 +1,66 @@
-export const ask = [
-  {
-    question: "Le matin au petit-dèj tu est plutôt..",
-    choices: [
-      {
-        title: "Tête de méchant",
+export const ask = [{
+    question: "For breakfast, you prefer..",
+    choices: [{
+        title: "A Bad guys' head",
         value: 2
       },
       {
-        title: "Homar vivant",
+        title: "Living lobster",
         value: 1
       },
       {
-        title: "Chat du voisin",
+        title: "Neighbour's cat",
         value: -1
       },
       {
-        title: "Le voisin",
+        title: "The neighbour himself",
         value: -2
       }
     ]
   },
   {
-    question: "Tu te demandes si l’être humain peut voler. Pour le découvrir tu :",
-    choices: [
-      {
-        title: "Te jettes d’un immeuble",
+    question: "You are wondering if humans can fly. To find out you:",
+    choices: [{
+        title: "Jump from a building",
         value: 2
       },
       {
-        title: "Demande à quelqu’un",
+        title: "Simply ask someone",
         value: 1
       },
       {
-        title: "Pousse ta grand-mère dans l’escalier",
+        title: "Push your grandmother down the stairs",
         value: -1
       },
       {
-        title: "Jette quelqu’un d’un immeuble",
+        title: "Push someone from a building",
         value: -2
       }
     ]
   },
   {
-    question: "Ta mère ne veut pas te laisser sortir..",
-    choices: [
-      {
-        title: "Tu lui cries dessus",
+    question: "Your mum won’t let you go out",
+    choices: [{
+        title: "You yell at her",
         value: 2
       },
       {
-        title: "Tu t’échappes discrètement",
+        title: "You sneak out",
         value: 1
       },
       {
-        title: "Tu lui casses un bras",
+        title: "You break her arm",
         value: -1
       },
       {
-        title: "Tu tues son chien",
+        title: "You kill her dog",
         value: -2
       }
     ]
   },
   {
-    question: "Ton ennemi juré c’est.",
-    choices: [
-      {
+    question: "Your sworn enemy is",
+    choices: [{
         title: "Spider-man",
         value: 2
       },
@@ -78,28 +73,27 @@ export const ask = [
         value: -1
       },
       {
-        title: "Tout le monde",
+        title: "Everyone",
         value: -2
       }
     ]
   },
   {
-    question: "Il t’arrive de tuer..",
-    choices: [
-      {
-        title: "Si la personne est un méchant",
+    question: "Sometimes you kill..",
+    choices: [{
+        title: "If the guy is wicked",
         value: 2
       },
       {
-        title: "Pour sauver des vies",
+        title: "To save lives",
         value: 1
       },
       {
-        title: "Par vengeance",
+        title: "For vengeance",
         value: -1
       },
       {
-        title: "Quand tu t’ennuies le dimanche après-midi",
+        title: "When you are bored on sunday afternoon",
         value: -2
       }
     ]
