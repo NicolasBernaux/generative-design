@@ -33,6 +33,7 @@ document.addEventListener("changeScore", (e) => {
   if (e.detail.progression < 1) {
     canvas.update(e.detail.progression, e.detail.score);
   } else {
+    canvas.animEnd();
     const interval = setInterval(() => {
       canvas.update(e.detail.progression, e.detail.score, false);
       e.detail.progression++;

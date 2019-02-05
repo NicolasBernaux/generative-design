@@ -104,7 +104,7 @@ export default function Tentacle( settings, options ) {
     }
   };
 
-  this.draw = function (ctx) {
+  this.draw = function (ctx, opacity) {
 
       let s, e;
 
@@ -122,9 +122,11 @@ export default function Tentacle( settings, options ) {
       ctx.fill();
 
       if (settings.thickness > 2) {
+        ctx.globalAlpha = opacity;
         ctx.strokeStyle = settings.tentaclesStroke;
         ctx.lineWidth = 1;
         ctx.stroke();
+        ctx.globalAlpha = 1;
       }
     };
 };

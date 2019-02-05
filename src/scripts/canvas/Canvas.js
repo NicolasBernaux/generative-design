@@ -15,6 +15,7 @@ let settings = {
   gravity: 0.15,
   tentaclesFill: '#000000',
   tentaclesStroke: '#4c4c4c',
+  tentaclesStrokeOpacity: 1,
   length: 30,
   pulse: true,
   wind: 0,
@@ -22,13 +23,13 @@ let settings = {
     'min': -20,
     'max': 20,
   },
-  tentacleStrokeColor: {
-    'venom': "rgb(76,76,76)",
-    'carnage': 'rgb(215, 0, 0)',
-  },
   tentacleFillColor: {
-    'venom': "rgb(0,0,0)",
-    'carnage': 'rgb(255, 0, 0)',
+    venom: 'rgb(0,0,0)',
+    carnage: 'rgb(193, 26, 27)',
+  },
+  tentacleStrokeColor: {
+    venom: 'rgb(76,76,76)',
+    carnage: 'rgb(51, 3, 0)',
   },
   colorRatio: 0,
 };
@@ -39,10 +40,16 @@ let position = { x:0, y:0 };
 let backgroundColor = 'rgb(240,240,240, 0.9)';
 let opacity = 0;
 let canvasHeight;
-let colormap = interpolate([settings.tentacleFillColor.venom, settings.tentacleFillColor.carnage]);
+let fillColormap = interpolate([settings.tentacleFillColor.venom, settings.tentacleFillColor.carnage]);
+let strokeColormap = interpolate([settings.tentacleStrokeColor.venom, settings.tentacleStrokeColor.carnage]);
 let maxScore;
+let score = 0;
+let image = {
+  status: false,
+};
+let sketch;
 
-settings.tentaclesFill = colormap(0);
+settings.tentaclesFill = fillColormap(0);
 
 
 export default function Canvas($element, questions) {
@@ -62,11 +69,13 @@ export default function Canvas($element, questions) {
   changeOpacity();
 
   // Canvas
-  let sketch = Sketch.create({
+  sketch = Sketch.create({
 
     retina: false,
 
     container: document.getElementById( $element ),
+
+    preload: function() {},
 
     setup: function() {
       canvasHeight = this.height;
@@ -106,9 +115,9 @@ export default function Canvas($element, questions) {
 
       // draw tentacules
       for ( let i = 0, n = tentacles.length; i < n; i++ ) {
-        tentacles[i].draw( this );
+        tentacles[i].draw( this, settings.tentaclesStrokeOpacity );
       }
-      // this.fillRect(0, 0, this.width * progress , this.height);
+      drawImage(this);
     },
 
     resize: function() {
@@ -120,40 +129,28 @@ export default function Canvas($element, questions) {
       }
     }
   });
-
 };
 
-Canvas.prototype.update = function(progress, score, movement = true) {
+Canvas.prototype.update = function(progress, newScore, movement = true) {
   const newTentacles = 30;
   settings.gravity += 0.000;
-
-
-  // Change color
-  let ratio = {val: settings.colorRatio};
-  let result;
-  console.log(maxScore);
-  if (score > 0) {
-    result = 0;
-  } else {
-    result = (-score / maxScore);
-  }
-  // ease color
-  const progressColor = TweenLite.to(ratio, 1, { val: result});
-  progressColor.eventCallback('onUpdate', function () {
-    settings.colorRatio = ratio.val;
-    settings.tentaclesFill = colormap(settings.colorRatio);
-  });
-
+  score = newScore;
 
 
   // Change movement
   if (movement) {
     settings.movement.min -= 7;
     settings.movement.max += 7;
+
+    // Change color
+    changeColor();
   } else {
     settings.gravity += 0.5;
     settings.movement.min = -10;
     settings.movement.max = 10;
+
+    // Change color
+    changeColor(true);
   }
 
   // New tentacles
@@ -173,7 +170,34 @@ Canvas.prototype.update = function(progress, score, movement = true) {
 };
 
 Canvas.prototype.animEnd = function () {
-
+  let color, image;
+  if (score > 0) {
+    color = settings.tentacleFillColor.venom;
+    image = 'Venom';
+  } else {
+    color = settings.tentacleFillColor.carnage;
+    image = 'Carnage';
+  }
+  getImage(image);
+  let backgroundColormap = interpolate([ backgroundColor, color]);
+  let i = 0;
+  setTimeout(() => {
+    let interval = setInterval(() => {
+      backgroundColor = backgroundColormap(i);
+      i += 0.1;
+      if (i >= 1 ) {
+        clearInterval(interval);
+        let interval2 = setInterval(() => {
+          settings.tentaclesStrokeOpacity -= 0.1;
+          settings.tentaclesStrokeOpacity = Math.round(settings.tentaclesStrokeOpacity*100)/100;
+          if (settings.tentaclesStrokeOpacity <= 0 ) {
+            clearInterval(interval2);
+            tentacles = [];
+          }
+        }, 100);
+      }
+    }, 100);
+  }, 1000);
 };
 
 const createTentacle = function(side, minHeight, maxHeight) {
@@ -196,3 +220,39 @@ const createTentacle = function(side, minHeight, maxHeight) {
   tentacle.move(position.y, position.x, true );
   tentacles.push( tentacle );
 };
+
+const changeColor = function(end = false) {
+  let result;
+  if (score > 0) {
+    result = 0;
+  } else {
+    result = (-score / maxScore);
+    if (end === true) {
+      result = 1;
+    }
+  }
+  let tentaculesRatio = {val: settings.colorRatio};
+
+  const progressColor = TweenLite.to(tentaculesRatio, 1, { val: result});
+  progressColor.eventCallback('onUpdate', function () {
+    settings.colorRatio = tentaculesRatio.val;
+    settings.tentaclesFill = fillColormap(settings.colorRatio);
+    settings.tentaclesStroke = strokeColormap(settings.colorRatio);
+  });
+};
+
+const getImage = function(name) {
+  image.image = new Image();
+  image.image.onload = function() {
+    image.status = true;
+  };
+  image.image.src = `public/images/result/${name}.svg`;
+
+};
+
+const drawImage = function (ctx) {
+  if (image.status) {
+    // ctx.drawImage(image.image, 0, 0);
+  }
+};
+
