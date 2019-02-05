@@ -53,10 +53,10 @@
       #fff
     );
     cursor: pointer;
-    animation: ani2 0.7s steps(22) reverse;
+    animation: ani2 0.7s steps(22);
 
     &:hover {
-      animation: ani 0.7s steps(22) reverse;
+      animation: ani 0.7s steps(22);
     }
   }
 }
