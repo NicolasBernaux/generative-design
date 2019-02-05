@@ -9,6 +9,7 @@ class Form {
     };
     this.progression = 0;
     this.soundClick = new Audio("public/audio/sound_clic_others_buttons.mp3");
+    this.soundHover = new Audio("public/audio/slim.mp3");
   }
 
   addScore(value) {
@@ -78,6 +79,9 @@ class Form {
         $choice.classList.add("question");
         $choice.textContent = choice.title;
         $choice.dataset.value = choice.value;
+        $choice.addEventListener("mouseover", () => {
+          this.soundHover.play();
+        });
         $choice.addEventListener("click", (event) =>
           this.onQuestionClick(event)
         );
