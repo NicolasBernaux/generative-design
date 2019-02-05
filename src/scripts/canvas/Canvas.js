@@ -19,10 +19,7 @@ let settings = {
   length: 30,
   pulse: true,
   wind: 0,
-  movement: {
-    'min': -20,
-    'max': 20,
-  },
+  movement: 30,
   tentacleFillColor: {
     venom: 'rgb(0,0,0)',
     carnage: 'rgb(193, 26, 27)',
@@ -100,7 +97,7 @@ export default function Canvas($element, questions) {
 
     update: function() {
       if ( settings.pulse ) {
-        position.y = random(settings.movement.min, settings.movement.max );
+      position.y = sin(this.millis* 10)* settings.movement;
       }
       for ( let i = 0;  i < tentacles.length ; i++ ) {
         tentacles[i].move(position.y);
@@ -139,15 +136,13 @@ Canvas.prototype.update = function(progress, newScore, movement = true) {
 
   // Change movement
   if (movement) {
-    settings.movement.min -= 7;
-    settings.movement.max += 7;
+    settings.movement += 2;
 
     // Change color
     changeColor();
   } else {
     settings.gravity += 0.5;
-    settings.movement.min = -10;
-    settings.movement.max = 10;
+    settings.movement = 60;
 
     // Change color
     changeColor(true);
