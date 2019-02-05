@@ -41,6 +41,7 @@ class Form {
       this.changeProgression();
       this.emitEvent();
 
+      this.soundClick.currentTime = 0;
       this.soundClick.play();
 
       this.dom.card.classList.remove("card-visible");
@@ -50,8 +51,13 @@ class Form {
         if (this.questionIndex < this.questions.length) {
           this.render();
         }
-      }, 1000);
+      }, 500);
     }
+  }
+
+  onMouseOver() {
+    this.soundHover.currentTime = 0;
+    this.soundHover.play();
   }
 
   render() {
@@ -84,17 +90,12 @@ class Form {
         $choice.classList.add("button-container-1");
         title1.classList.add("mas");
 
-        //title2.classList.add("button2");
-
         $choice.appendChild(title1);
         $choice.appendChild(title2);
 
         $choice.classList.add("question");
         $choice.dataset.value = choice.value;
-        $choice.addEventListener("mouseover", () => {
-          this.soundHover.currentTime = 0;
-          this.soundHover.play();
-        });
+        $choice.addEventListener("mouseover", () => this.onMouseOver());
         $choice.addEventListener("click", (event) =>
           this.onQuestionClick(event)
         );

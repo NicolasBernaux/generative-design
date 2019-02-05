@@ -8,7 +8,7 @@
   font-family: "Marvel", sans-serif;
   text-align: center;
   opacity: 0;
-  transition: opacity 1s ease;
+  transition: opacity 0.5s ease;
 
   &.card-visible {
     opacity: 1;
@@ -50,14 +50,5 @@
         margin-bottom: 0;
       }
     }
-  }
-}
-
-@keyframes FADE-IN {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
   }
 }
