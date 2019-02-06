@@ -165,7 +165,7 @@ Canvas.prototype.update = function(progress, newScore, movement = true) {
 
 Canvas.prototype.animEnd = function () {
   let color, image;
-  if (score > 0) {
+  if (score >= 0) {
     color = settings.tentacleFillColor.venom;
     image = 'Venom';
   } else {
@@ -217,13 +217,13 @@ const createTentacle = function(side, minHeight, maxHeight) {
 
 const changeColor = function(end = false) {
   let result;
-  if (score < 0) {
+  if (score >= 0) {
+    result = 0;
+  } else {
     result = (-score / maxScore);
     if (end === true) {
       result = 1;
     }
-  } else {
-    result = 0;
   }
   let tentaculesRatio = {val: settings.colorRatio};
 
