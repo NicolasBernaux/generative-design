@@ -7,6 +7,7 @@ import Canvas from "./canvas/Canvas";
 //Form
 import Form from "./form/Form";
 import { ask } from "../utils/mockAsks";
+import { Share } from './share/Share';
 
 const canvasContainer = document.querySelector("#canvas");
 const buttonStart = document.querySelector(".button--start");
@@ -14,7 +15,8 @@ let canvas;
 
 if (canvasContainer && buttonStart) {
   // Launch the game
-  buttonStart.addEventListener("click", () => {
+  buttonStart.addEventListener("click", (e) => {
+    e.preventDefault();
     const soundStart = new Audio("public/audio/sound_clic_start_questions.mp3");
     soundStart.play();
     // Init the form
@@ -39,6 +41,7 @@ document.addEventListener("changeScore", (e) => {
       e.detail.progression++;
       if (e.detail.progression >= 5) {
         clearInterval(interval);
+        new Share(document.querySelector('.home-hero'));
       }
     }, 100);
   }
