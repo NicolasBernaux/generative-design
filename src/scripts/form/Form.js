@@ -90,6 +90,7 @@ class Form {
         $choice.classList.add("button--primary");
         $title1.classList.add("button--primary__mask1");
         $title2.classList.add("button--primary__mask2");
+        $title2.classList.add("button--animationStandard");
 
         $choice.appendChild($title1);
         $choice.appendChild($title2);

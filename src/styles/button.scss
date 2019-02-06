@@ -50,39 +50,23 @@
         none,
         $white
       );
-      &__mask3 {
-        position: absolute;
-        color: $white;
-        background: $black;
-        text-align: center;
-        overflow: hidden;
-        font-family: "Marvel", sans-serif;
-        font-size: 1rem;
-        letter-spacing: 1px;
-      }
-      &__mask4 {
-        width: 101%;
-        height: 100%;
-        letter-spacing: 1px;
-        font-size: 1rem;
-        font-family: "Marvel", sans-serif;
-        text-transform: uppercase;
-        border-radius: 70px;
-        @include button(
-          $black,
-          "https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png",
-          2300%,
-          100%,
-          none,
-          $white
-        );
-      }
-      cursor: pointer;
-      animation: ani2 0.7s steps(22) forwards reverse;
+    }
+  }
+  &--animationStandard {
+    cursor: pointer;
+    animation: ani2 0.7s steps(22) forwards reverse;
 
-      &:hover {
-        animation: ani 0.7s steps(22) forwards reverse;
-      }
+    &:hover {
+      animation: ani 0.7s steps(22) forwards reverse;
+    }
+  }
+
+  &--animationReverse {
+    cursor: pointer;
+    animation: ani2 0.7s steps(22) forwards;
+
+    &:hover {
+      animation: ani 0.7s steps(22) forwards;
     }
   }
 }
