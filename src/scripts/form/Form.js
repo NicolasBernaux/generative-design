@@ -37,11 +37,9 @@ class Form {
       const value = target.dataset.value;
       this.questionIndex++;
 
-      console.log(target);
       this.addScore(value);
       this.changeProgression();
       this.emitEvent();
-      console.log(this.score);
       this.soundClick.currentTime = 0;
       this.soundClick.play();
 

@@ -136,7 +136,6 @@ Canvas.prototype.update = function(progress, newScore, movement = true) {
 
   // Change movement
   if (movement) {
-    settings.movement += 2;
 
     // Change color
     changeColor();
@@ -218,13 +217,13 @@ const createTentacle = function(side, minHeight, maxHeight) {
 
 const changeColor = function(end = false) {
   let result;
-  if (score > 0) {
-    result = 0;
-  } else {
+  if (score < 0) {
     result = (-score / maxScore);
     if (end === true) {
       result = 1;
     }
+  } else {
+    result = 0;
   }
   let tentaculesRatio = {val: settings.colorRatio};
 

@@ -25,7 +25,7 @@
         opacity: 0.6;
         }
         &:last-child{
-            margin-right: 0px;
+            margin-right: 0;
         }
     }
     &__logo{
@@ -67,6 +67,9 @@
         .button--start {
             opacity: 0;
         }
+    }
+    .title__questions {
+        opacity: 0;
     }
 }
 
