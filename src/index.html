@@ -1,41 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Venom</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="public/images/favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="public/images/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="public/images/favicon/favicon-16x16.png">
-  <link rel="manifest" href="public/images/favicon/site.webmanifest">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
-</head>
-<body>
-<div class="home-hero">
-  <div class="container home-hero__wrapper">
-    <nav class="home-hero__navigation">
-      <img class="home-hero__logo" src="public/images/favicon/eyes-favicon.svg" alt="favicon">
-    </nav>
-    <div class="home-hero__center">
-      <h1 class="title__venom mb-50">VENOM</h1>
-      <h2 class="title__questions">
-        Discover which Venom character you are
-      </h2>
-      <a href="#" class="button-container-1 button--primary button--start">
-        <span class="button--primary__mask1">START</span>
-        <button class="button--primary__mask2" data-value="2">START</button>
-      </a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Venom</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="public/images/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="public/images/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="public/images/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="public/images/favicon/site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body>
+    <div class="home-hero">
+      <div class="container home-hero__wrapper">
+        <nav class="home-hero__navigation">
+          <img
+            class="home-hero__logo"
+            src="public/images/favicon/eyes-favicon.svg"
+            alt="favicon"
+          />
+        </nav>
+        <div class="home-hero__center">
+          <h1 class="title__venom mb-50">VENOM</h1>
+          <h2 class="title__questions">
+            Discover which Venom character you are
+          </h2>
+          <a href="#" class="button-container-1 button--primary button--start">
+            <span class="button--primary__mask1">START</span>
+            <button class="button--primary__mask2">START</button>
+          </a>
+        </div>
+        <div class="home-hero__footer">
+          <p class="txt-paragraph">#VENOM</p>
+          <img
+            class="img-fluid home-hero__footericon"
+            src="public/images/icons-middle.png"
+            alt="sony"
+          />
+          <img
+            class="img-fluid home-hero__footericon"
+            src="public/images/marvel.png"
+            alt="marvel"
+          />
+        </div>
+      </div>
+      <div id="canvas"></div>
+      <div id="container"></div>
+      <iframe
+        src="public/audio/silence.mp3"
+        allow="autoplay"
+        id="audio"
+        style="display:none"
+      ></iframe>
+      <audio id="player" autoplay loop>
+        <source src="public/audio/background_music.mp3" type="audio/mp3" />
+      </audio>
     </div>
-    <div class="home-hero__footer">
-      <p class="txt-paragraph">#VENOM</p>
-      <img class="img-fluid home-hero__footericon" src="public/images/icons-middle.png" alt="sony">
-      <img class="img-fluid home-hero__footericon" src="public/images/marvel.png" alt="marvel">
-    </div>
-  </div>
-<div id="canvas"></div>
-<div id="container"></div>
-</div>
-
-</body>
+  </body>
+</html>
