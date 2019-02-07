@@ -52,21 +52,32 @@
       );
     }
   }
-  &--animationStandard {
-    cursor: pointer;
-    animation: ani2 0.7s steps(22) forwards reverse;
 
-    &:hover {
-      animation: ani 0.7s steps(22) forwards reverse;
+  // remove animation mask on safari
+  body:not(.safari) & {
+    &--animationStandard {
+      cursor: pointer;
+      animation: ani2 0.7s steps(22) forwards reverse;
+
+      &:hover {
+        animation: ani 0.7s steps(22) forwards reverse;
+      }
+    }
+    &--animationReverse {
+      cursor: pointer;
+      animation: ani2 0.7s steps(22) forwards;
+
+      &:hover {
+        animation: ani 0.7s steps(22) forwards;
+      }
     }
   }
-
-  &--animationReverse {
-    cursor: pointer;
-    animation: ani2 0.7s steps(22) forwards;
-
-    &:hover {
-      animation: ani 0.7s steps(22) forwards;
+  body.safari & {
+    &--animationStandard, &--animationReverse {
+      transition: transform 0.2s ease;
+      &:hover {
+        transform: translateY(-3px);
+      }
     }
   }
 }

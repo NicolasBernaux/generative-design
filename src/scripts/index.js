@@ -8,6 +8,7 @@ import Canvas from "./canvas/Canvas";
 import Form from "./form/Form";
 import { ask } from "../utils/mockAsks";
 import { Share } from './share/Share';
+import { Compatibility } from './Compatibility/Compatibility';
 
 const canvasContainer = document.querySelector("#canvas");
 const buttonStart = document.querySelector(".button--start");
@@ -30,20 +31,29 @@ if (canvasContainer && buttonStart) {
   });
 }
 
+// On score changing
 document.addEventListener("changeScore", (e) => {
   e.preventDefault();
-  if (e.detail.progression < 1) {
+
+  if (e.detail.progression < 1) {   // if game is not over
     canvas.update(e.detail.progression, e.detail.score);
-  } else {
+  } else { // else if game is over
     canvas.update(e.detail.progression, e.detail.score);
     canvas.animEnd();
+
     const interval = setInterval(() => {
       canvas.update(e.detail.progression, e.detail.score, false);
       e.detail.progression++;
+
       if (e.detail.progression >= 5) {
         clearInterval(interval);
         new Share(document.querySelector('.home-hero'));
       }
+
     }, 100);
   }
 });
+
+// Test browser
+const compatibility = new Compatibility();
+compatibility.addClass();

@@ -5,6 +5,7 @@ import { TweenLite, Circ } from 'gsap';
 
 // Elements
 import Tentacle from "./Tentacle";
+import { Compatibility } from '../Compatibility/Compatibility';
 
 // Tentacles settings
 let settings = {
@@ -30,6 +31,13 @@ let settings = {
   },
   colorRatio: 0,
 };
+
+// Number tentacles on safari
+const isSafari = new Compatibility().isSafari;
+if (isSafari) {
+  settings.tentacles = 60;
+}
+
 
 // Setup parametters
 let tentacles = [];
@@ -151,12 +159,12 @@ Canvas.prototype.update = function(progress, newScore, movement = true) {
   for (let i= 0; i <= newTentacles; i++) {
     if (i > newTentacles/2) {
       createTentacle('left', 20 + (progress * 25), 21 + (progress * 25));
-      if (i%10) {
+      if (i%10 || isSafari) {
         tentacles.splice(0, 1);
       }
     } else {
       createTentacle('right', 20 + (progress * 25), 21 + (progress * 25));
-      if (i%10) {
+      if (i%10 || isSafari) {
         tentacles.splice(tentacles.length / 2 + 1, 1);
       }
     }
