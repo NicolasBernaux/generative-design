@@ -8,6 +8,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    .home-hero & .title__questions{
+        opacity: 1;
+    }
     &__replay{
         width: 70px;
         height: 70px;
@@ -63,5 +71,8 @@
     &__socials{
         display: flex;
         justify-content: space-between;
+    }
+    &__video{
+        width: 100%;
     }
 }

@@ -49,9 +49,6 @@ let fillColormap = interpolate([settings.tentacleFillColor.venom, settings.tenta
 let strokeColormap = interpolate([settings.tentacleStrokeColor.venom, settings.tentacleStrokeColor.carnage]);
 let maxScore;
 let score = 0;
-let image = {
-  status: false,
-};
 let sketch;
 
 settings.tentaclesFill = fillColormap(0);
@@ -122,7 +119,6 @@ export default function Canvas($element, questions) {
       for ( let i = 0, n = tentacles.length; i < n; i++ ) {
         tentacles[i].draw( this, settings.tentaclesStrokeOpacity );
       }
-      drawImage(this);
     },
 
     resize: function() {
@@ -172,15 +168,12 @@ Canvas.prototype.update = function(progress, newScore, movement = true) {
 };
 
 Canvas.prototype.animEnd = function () {
-  let color, image;
+  let color;
   if (score >= 0) {
     color = settings.tentacleFillColor.venom;
-    image = 'Venom';
   } else {
     color = settings.tentacleFillColor.carnage;
-    image = 'Carnage';
   }
-  getImage(image);
   let backgroundColormap = interpolate([ backgroundColor, color]);
   let i = 0;
   setTimeout(() => {
@@ -242,19 +235,3 @@ const changeColor = function(end = false) {
     settings.tentaclesStroke = strokeColormap(settings.colorRatio);
   });
 };
-
-const getImage = function(name) {
-  image.image = new Image();
-  image.image.onload = function() {
-    image.status = true;
-  };
-  image.image.src = `public/images/result/${name}.svg`;
-
-};
-
-const drawImage = function (ctx) {
-  if (image.status) {
-    // ctx.drawImage(image.image, 0, 0);
-  }
-};
-

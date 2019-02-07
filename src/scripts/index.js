@@ -9,7 +9,9 @@ import Form from "./form/Form";
 import { ask } from "../utils/mockAsks";
 import { Share } from "./share/Share";
 import { Compatibility } from "./Compatibility/Compatibility";
-import { endSentence } from "./endSentence";
+import { endSentence } from "./endSentence/EndSentences";
+import EndTemplate from './EndTemplate';
+import EndSentences from './endSentence/EndSentences';
 
 const canvasContainer = document.querySelector("#canvas");
 const buttonStart = document.querySelector(".button--start");
@@ -51,7 +53,17 @@ document.addEventListener("changeScore", (e) => {
 
       if (e.detail.progression >= 5) {
         clearInterval(interval);
-        new Share(document.querySelector(".home-hero"));
+
+        setTimeout(() => {
+          new EndTemplate(
+            new EndSentences(
+              e.detail.score,
+              'public/videos/Venom.mp4',
+              'public/videos/Carnage.mp4'
+            ),
+            document.querySelector(".home-hero")
+          );
+        }, 3000);
       }
     }, 100);
   }
