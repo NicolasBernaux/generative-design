@@ -16,6 +16,10 @@ import EndSentences from './endSentence/EndSentences';
 const canvasContainer = document.querySelector("#canvas");
 const buttonStart = document.querySelector(".button--start");
 let canvas;
+let video = {
+  venom: 'public/videos/Venom.mp4',
+  carnage: 'public/videos/Carnage.mp4',
+};
 
 if (canvasContainer && buttonStart) {
   // Launch the game
@@ -58,8 +62,8 @@ document.addEventListener("changeScore", (e) => {
           new EndTemplate(
             new EndSentences(
               e.detail.score,
-              'public/videos/Venom.mp4',
-              'public/videos/Carnage.mp4'
+              video.venom,
+              video.carnage
             ),
             document.querySelector(".home-hero")
           );
@@ -72,3 +76,13 @@ document.addEventListener("changeScore", (e) => {
 // Test browser
 const compatibility = new Compatibility();
 compatibility.addClass();
+
+// Preload Vedeos
+document.addEventListener("DOMContentLoaded",function() {
+  setTimeout(() => {
+    for (let key in video) {
+      const load = new Image();
+      load.src = video[key];
+    }
+  }, 1000);
+});
