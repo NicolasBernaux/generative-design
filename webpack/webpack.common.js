@@ -25,6 +25,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: Path.resolve(__dirname, '../src/index.html')
     }),
+    new HtmlWebpackPlugin({
+      title: 'index-bis',
+      filename: 'index-bis.html',
+      template: Path.resolve(__dirname, '../src/index-bis.html'),
+    }),
   ],
   resolve: {
     alias: {
