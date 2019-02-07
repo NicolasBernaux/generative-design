@@ -6,5 +6,8 @@ export const Compatibility = function() {
 Compatibility.prototype.addClass = function() {
   if (this.isSafari === true) {
     document.querySelector('body').classList.add('safari');
+    document.querySelector('.button--start').addEventListener('click', function() {
+      document.getElementById('player').play();
+    });
   }
 };
