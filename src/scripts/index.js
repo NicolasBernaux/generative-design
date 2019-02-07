@@ -7,8 +7,9 @@ import Canvas from "./canvas/Canvas";
 //Form
 import Form from "./form/Form";
 import { ask } from "../utils/mockAsks";
-import { Share } from './share/Share';
-import { Compatibility } from './Compatibility/Compatibility';
+import { Share } from "./share/Share";
+import { Compatibility } from "./Compatibility/Compatibility";
+import { endSentence } from "./endSentence";
 
 const canvasContainer = document.querySelector("#canvas");
 const buttonStart = document.querySelector(".button--start");
@@ -18,6 +19,7 @@ if (canvasContainer && buttonStart) {
   // Launch the game
   buttonStart.addEventListener("click", (e) => {
     e.preventDefault();
+
     const soundStart = new Audio("public/audio/sound_clic_start_questions.mp3");
     soundStart.play();
     // Init the form
@@ -35,9 +37,11 @@ if (canvasContainer && buttonStart) {
 document.addEventListener("changeScore", (e) => {
   e.preventDefault();
 
-  if (e.detail.progression < 1) {   // if game is not over
+  if (e.detail.progression < 1) {
+    // if game is not over
     canvas.update(e.detail.progression, e.detail.score);
-  } else { // else if game is over
+  } else {
+    // else if game is over
     canvas.update(e.detail.progression, e.detail.score);
     canvas.animEnd();
 
@@ -47,9 +51,8 @@ document.addEventListener("changeScore", (e) => {
 
       if (e.detail.progression >= 5) {
         clearInterval(interval);
-        new Share(document.querySelector('.home-hero'));
+        new Share(document.querySelector(".home-hero"));
       }
-
     }, 100);
   }
 });
