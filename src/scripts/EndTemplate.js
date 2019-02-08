@@ -13,7 +13,7 @@ export default function EndTemplate(content, element) {
   <div class="share-poppin__socials share-btn" 
   data-url="${getUrl()}"
   data-title="Discover which symbiote suits you best"
-  data-desc="${content.text}">
+  data-desc="${content.shareResult}">
     <a target="_blank" class="share-poppin__btn" data-id="fb">
                   <span class="share-poppin__btn__mask1">
                     <img class="share-poppin__icon" src="public/images/fb-b.svg" alt="facebook">
@@ -43,7 +43,7 @@ export default function EndTemplate(content, element) {
 };
 
 function getUrl() {
-  if (window.location.href.indexOf('localhost')) {
+  if (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "") {
     return 'http://google.com';
   }
 

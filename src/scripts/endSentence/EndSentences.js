@@ -17,6 +17,7 @@ export default function EndSentence(score, venomVideo, carnageVideo) {
       result.text = venom.ultra;
       result.video =  venomVideo;
     }
+    result.shareResult = "We are Venom";
   } else {
     const { carnage } = sentences;
     if (score > -3) {
@@ -29,6 +30,7 @@ export default function EndSentence(score, venomVideo, carnageVideo) {
       result.text = carnage.ultra;
       result.video = carnageVideo;
     }
+    result.shareResult = "I am Carnage";
   }
   return result;
 };
