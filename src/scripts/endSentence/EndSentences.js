@@ -3,7 +3,7 @@ import { sentences } from "../../utils/sentences";
 /**
  * @return {string}
  */
-export default function EndSentence(score, carnageVideo, venomVideo) {
+export default function EndSentence(score, venomVideo, carnageVideo) {
   let result = {};
   if (score >= 0) {
     const { venom } = sentences;
