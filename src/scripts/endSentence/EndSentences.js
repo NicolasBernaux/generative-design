@@ -4,7 +4,6 @@ import { sentences } from "../../utils/sentences";
  * @return {string}
  */
 export default function EndSentence(score, carnageVideo, venomVideo) {
-  console.log(score);
   let result = {};
   if (score >= 0) {
     const { venom } = sentences;

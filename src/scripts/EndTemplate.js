@@ -1,6 +1,6 @@
 export default function EndTemplate(content, element) {
   element.innerHTML = `<div class="share-poppin">
-  <a href="#" onClick="location.href=location.href" class="share-poppin__replay">
+  <a href="" onClick="location.href=location.href" class="share-poppin__replay">
     <img src="public/images/replay-arrow.svg" alt="replay">
   </a>
   <p class="title__questions mb-20">
