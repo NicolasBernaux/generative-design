@@ -1,6 +1,6 @@
 export default function EndTemplate(content, element) {
   element.innerHTML = `<div class="share-poppin">
-  <a href="#" class="share-poppin__replay">
+  <a href="#" onClick="location.href=location.href" class="share-poppin__replay">
     <img src="public/images/replay-arrow.svg" alt="replay">
   </a>
   <p class="title__questions mb-20">
@@ -37,7 +37,7 @@ export default function EndTemplate(content, element) {
         <img class="share-poppin__icon" src="public/images/wp-w.svg" alt="WhatsApp">
       </button>
     </a>
-    <a target="_blank" href="#" class="share-poppin__btn" data-id="print">
+    <a target="_blank" href="#" onclick="window.print();" class="share-poppin__btn" data-id="print">
                   <span class="share-poppin__btn__mask1">
                     <img class="share-poppin__icon" src="public/images/pr-b.svg" alt="print">
                   </span>
