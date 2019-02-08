@@ -11,8 +11,9 @@ export default function EndTemplate(content, element) {
     Share your result
   </p>
   <div class="share-poppin__socials share-btn" 
-  data-url="${getUrl()}" data-title="${content.title}"
-  data-desc="super Partage de ouf">
+  data-url="${getUrl()}"
+  data-title="Discover which symbiote suits you best"
+  data-desc="${content.text}">
     <a target="_blank" class="share-poppin__btn" data-id="fb">
                   <span class="share-poppin__btn__mask1">
                     <img class="share-poppin__icon" src="public/images/fb-b.svg" alt="facebook">
