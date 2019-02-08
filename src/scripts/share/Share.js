@@ -41,7 +41,4 @@ export const Share = function(element) {
   };
   element.appendChild(container);
 
-  setTimeout(() => {
-    share_button(window,document);
-  },100);
 };

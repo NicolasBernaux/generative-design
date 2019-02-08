@@ -12,6 +12,7 @@ import { Compatibility } from "./Compatibility/Compatibility";
 import { endSentence } from "./endSentence/EndSentences";
 import EndTemplate from './EndTemplate';
 import EndSentences from './endSentence/EndSentences';
+import share_button from './lib/share-button';
 
 const canvasContainer = document.querySelector("#canvas");
 const buttonStart = document.querySelector(".button--start");
@@ -67,6 +68,7 @@ document.addEventListener("changeScore", (e) => {
             ),
             document.querySelector(".home-hero")
           );
+          share_button(window,document);
         }, 3000);
       }
     }, 100);
@@ -78,7 +80,7 @@ const compatibility = new Compatibility();
 compatibility.addClass();
 
 // Preload Vedeos
-document.addEventListener("DOMContentLoaded",function() {
+window.addEventListener("DOMContentLoaded",function() {
   setTimeout(() => {
     for (let key in video) {
       const load = new Image();

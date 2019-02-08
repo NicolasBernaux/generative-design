@@ -10,7 +10,9 @@ export default function EndTemplate(content, element) {
   <p class="txt-paragraph mb-20 mt-20">
     Share your result
   </p>
-  <div class="share-poppin__socials share-btn">
+  <div class="share-poppin__socials share-btn" 
+  data-url="${getUrl()}" data-title="${content.title}"
+  data-desc="super Partage de ouf">
     <a target="_blank" class="share-poppin__btn" data-id="fb">
                   <span class="share-poppin__btn__mask1">
                     <img class="share-poppin__icon" src="public/images/fb-b.svg" alt="facebook">
@@ -46,3 +48,11 @@ export default function EndTemplate(content, element) {
   </div>
 </div>`;
 };
+
+function getUrl() {
+  if (window.location.href.indexOf('localhost')) {
+    return 'http://google.com';
+  }
+
+  return window.location.href;
+}
