@@ -6,7 +6,7 @@ export default function EndTemplate(content, element) {
   <p class="title__questions mb-20">
     ${content.text}
   </p>
-  <video src="${content.video}"  class="share-poppin__video" autoplay></video>
+  <video src="${content.video}"  class="share-poppin__video" autoplay loop></video>
   <p class="txt-paragraph mb-20 mt-20">
     Share your result
   </p>
@@ -27,14 +27,6 @@ export default function EndTemplate(content, element) {
                   </span>
       <button class="share-poppin__btn__mask2 button--animationReverse">
         <img class="share-poppin__icon" src="public/images/tw-w.svg" alt="Twitter">
-      </button>
-    </a>
-    <a target="_blank" class="share-poppin__btn" data-id="wa">
-                  <span class="share-poppin__btn__mask1">
-                    <img class="share-poppin__icon" src="public/images/wp-b.svg" alt="WhatsApp">
-                  </span>
-      <button class="share-poppin__btn__mask2 button--animationRevers">
-        <img class="share-poppin__icon" src="public/images/wp-w.svg" alt="WhatsApp">
       </button>
     </a>
     <a target="_blank" onclick="window.print();" class="share-poppin__btn" data-id="print">

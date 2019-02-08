@@ -1,5 +1,5 @@
 export const ask = [{
-    question: "For breakfast, you prefer..",
+    question: "For breakfast you prefer...",
     choices: [{
         title: "A Bad guys' head",
         value: 2
@@ -79,7 +79,7 @@ export const ask = [{
     ]
   },
   {
-    question: "Sometimes you kill..",
+    question: "Sometimes you kill...",
     choices: [{
         title: "If the guy is wicked",
         value: 2
